@@ -1,0 +1,436 @@
+{% load static %}
+<!DOCTYPE html>
+<html
+  data-wf-domain="refraction.dev"
+  data-wf-page="654b716d515e3b32d1db7be8"
+  data-wf-site="65301d49e87fbf23cc9a1e60"
+  lang="en"
+>
+  <head>
+    <meta charset="utf-8" />
+    <title>NeuroFitness</title>
+
+    <!--  favicon -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href=" {% static 'images/home/favicon.png' %} "
+    />
+
+    <!--  custom css link -->
+    <link
+      href="{% static 'css/pages/main.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- Font -->
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
+      type="8f4420f43736fbdc46d735ec-text/javascript"
+    ></script>
+    <script type="8f4420f43736fbdc46d735ec-text/javascript">
+      WebFont.load({  google: {    families: ["Syne:regular,600,700"]  }});
+    </script>
+  </head>
+
+  <body class="body">
+    <!-- #region[Red] Navbar -->
+
+    <div class="navbar">
+      <div class="navbar-container">
+        <div class="header-container">
+          <div class="navbar-wrapper">
+            <a href="/" class="logo">
+              <h2>
+                <span class="neuro">Neuro</span
+                ><span class="fitness">Fitness</span>
+              </h2>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- #endregion -->
+
+    <!-- #region[Blue] Banner -->
+
+    <section class="section-banner">
+      <div class="container mt-head">
+        <aside class="home__hero">
+          <div id="banner_Content" class="home-hero__content">
+            <h1 class="banner_Largetxt">
+              Make Your Body In Shape with
+              <span class="paragraph-underline">magic</span> AI
+            </h1>
+            <p class="txt paragraph-normal">
+              Reignite your fitness journey with AI. Say goodbye to generic
+              workouts and hello to personalized training. Experience smarter
+              methods tailored to your needs. Enjoy dynamic routines filled with
+              activities you love. Meet your AI personal trainer and
+              revolutionize your approach to fitness.
+              <br />
+            </p>
+            <div class="banner_button">
+              <a
+                href="{% url 'login' %}"
+                class="primary-button primary-button-large w-button"
+                >Join now - it&#x27;s free</a
+              >
+            </div>
+          </div>
+
+          <div id="banner_Video" class="home-hero__video">
+            <div class="banner_video_Container">
+              <div class="banner-video">
+                <!-- <iframe title="NeuroFitness"
+                src="https://player.vimeo.com/video/809087642?title=0&byline=0&portrait=0&dnt=1&share=0" style="
+                      position: absolute;
+                      top: 0;
+                      left: 0;
+                      width: 100%;
+                      height: 100%;
+                    " frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> 
+
+                    -->
+                <iframe
+                  title="NeuroFitness"
+
+                  src="{% static 'videos/fit.mp4' %}"
+                  style="
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border: none; /* Remove border */
+                  "
+                  title="Neuro Fitness"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                ></iframe>
+                <!-- <iframe title="NeuroFitness"
+                src="https://player.vimeo.com/video/915820673?title=0&byline=0&portrait=0&dnt=1&share=0" style="
+                      position: absolute;
+                      top: 0;
+                      left: 0;
+                      width: 100%;
+                      height: 100%;
+                    " frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- #endregion -->
+
+    <!-- #region[Gold] Discover -->
+
+    <section class="section-discover">
+      <div class="container">
+        <div class="discover-features">
+          <div class="discover-feataures__heading">
+            <div class="typing-heading">
+              <h2 class="typing-heading">
+                <span class="typing-heading__secondary"> </span> with AI
+              </h2>
+            </div>
+
+            <p class="paragraph-large txt">
+              Experience precision training with NeuroFitness. Our innovative
+              system uses advanced AI technology to detect your movements and
+              accurately count your repetitions. With real-time feedback on your
+              workout performance.
+            </p>
+
+            <div class="discover-button">
+              <a
+                href="#features"
+                class="primary-button primary-button-large w-button"
+                id="scrollToFeatures"
+                >Discover all features</a
+              >
+            </div>
+          </div>
+
+          <div class="discover-image">
+            <img src="{% static 'images/home/home1.png' %}" loading="lazy"
+            sizes="(max-width: 479px) 93vw, (max-width: 767px) 95vw, (max-width:
+            1439px) 94vw, 1216px" " alt class=" discover-img" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- #endregion -->
+
+    <!-- #region[Green] Programming -->
+
+    <section class="programming-section" id="features">
+      <div class="container">
+        <div class="programming-section__content">
+          <div class="typing-heading">
+            <h2 class="typing-heading">
+              Features <span class="typing-heading__primary"> </span>
+            </h2>
+          </div>
+          <div class="programming-section__languages paragraph-large">
+            <div>
+              <h2>Real-time Feedback</h2>
+              <p>Improve your performance with instant guidance.</p>
+            </div>
+
+            <div>
+              <h2>Webcam-only usage</h2>
+              <p>
+                No more excuses! Get fit from the comfort of your home with just
+                a webcam.
+              </p>
+            </div>
+            <div>
+              <h2>Workout analysis</h2>
+              <p>
+                Analyze your workouts and track your progress towards your
+                fitness goals.
+              </p>
+            </div>
+
+            <div>
+              <h2>Powered by AI</h2>
+              <p>Advanced AI technology for precision training.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- #endregion -->
+
+    <!-- #region[Brown] Developer -->
+
+    <section class="section-developers">
+      <div
+        id="w-node-_2c17a38a-a36d-8ef1-9c1f-cc7e4680db05-d1db7be8"
+        class="developers__content"
+      >
+        <div class="developers__heading">
+          <h2>Designed for Gymnasts</h2>
+          <p class="paragraph-large mt-20">
+            "Join thousands globally in achieving peak fitness with
+            Neurofitness. Utilize AI for better health and a sculpted physique.
+            Start your journey to optimal wellness now!<br />
+          </p>
+        </div>
+        <div class="developers__columns">
+          <div
+            id="w-node-e33795f0-d6a6-1cb2-883f-e09c89c232a2-d1db7be8"
+            class="developers__item"
+          >
+            <p class="developers__numbers paragraph-extra-large color-white">
+              24
+            </p>
+            <p class="paragraph-normal">Muscle Group<br /></p>
+          </div>
+          <div
+            id="w-node-b76a53a0-6ca7-1fa6-afe7-8bf61c592823-d1db7be8"
+            class="developers__item"
+          >
+            <p class="developers__numbers paragraph-extra-large color-white">
+              30 +
+            </p>
+            <p class="paragraph-normal">Workout<br /></p>
+          </div>
+          <div
+            id="w-node-d6655768-d2ba-499a-e191-99d9a4249465-d1db7be8"
+            class="developers__item"
+          >
+            <p class="developers__numbers paragraph-extra-large color-white">
+              40 +
+            </p>
+            <p class="paragraph-normal">Customers<br /></p>
+          </div>
+          <div
+            id="w-node-bd1577b1-7ed4-676c-09f5-a184fd3e018e-d1db7be8"
+            class="developers__item"
+          >
+            <p class="developers__numbers paragraph-extra-large color-white">
+              33
+            </p>
+            <p class="paragraph-normal">Landmarks<br /></p>
+          </div>
+        </div>
+      </div>
+      <div
+        id="w-node-_114996b4-cd01-4e14-233b-77af7f356527-d1db7be8"
+        class="developers__image"
+      >
+        <img src="{% static 'images/home/home4.png' %}" loading="lazy"
+        sizes="(max-width: 767px) 100vw, (max-width: 991px) 48vw, (max-width:
+        1439px) 49vw, 50vw" " alt=" recraction-image" class="image-15" />
+      </div>
+    </section>
+
+    <!-- #endregion -->
+
+    <!-- #region[White] Regiter  -->
+
+    <section>
+      <div class="container">
+        <div class="block-container">
+          <div class="block-highlight">
+            <div>
+              <div class="block_highlight__background">
+                <img
+                  src="{% static 'images/home/home5.png' %}"
+                  loading="lazy"
+                  sizes="(max-width: 479px) 93vw, (max-width: 767px) 95vw, (max-width: 1439px) 93vw, 1214px"
+                  alt="Refraction Logo"
+                  class="image-11"
+                />
+              </div>
+              <div class="block-highlight__content">
+                <h2 class="mb-24">Start shaping your body at home.</h2>
+                <p class="paragraph-large mt-5">
+                  Use the power of AI to enhance your fitness routine, handling
+                  tasks like planning and tracking, while you stay focused on
+                  getting fit.
+                </p>
+              </div>
+              <div class="block-highlight__buttons">
+                <a
+                  href="{% url 'login' %}"
+                  class="secondary-button secondary-large-button ml-2 w-button"
+                  >Join now - it&#x27;s free →</a
+                >
+              </div>
+            </div>
+            <div class="block_hightlight__image">
+              <img
+                src="{% static 'images/home/home3.png' %}"
+                loading="lazy"
+                width="1402"
+                sizes="(max-width: 767px) 100vw, (max-width: 991px) 800px, 912px"
+                class="block_highlight__img"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- #endregion -->
+
+    <!-- #region[Cyan] Footer  -->
+
+    <section class="footer">
+      <div class="footer-container">
+        <div class="footer-logo">
+          <a href="/" class="logo">
+            <h2>
+              <span class="neuro">Neuro</span
+              ><span class="fitness">Fitness</span>
+            </h2>
+          </a>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-copyright">
+            © 2024
+            <a href="#" target="_blank" class="link-main">Fcis</a> Graduation Project
+            <a href="#" target="_blank" class="link-main"></a>. All
+            rights reserved.
+            <a href="/legal" class="link-main">Legal policies</a>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- #endregion -->
+
+    <!-- #region[Violet] Script Js  -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var scrollToFeaturesButton =
+          document.getElementById("scrollToFeatures");
+
+        if (scrollToFeaturesButton) {
+          scrollToFeaturesButton.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            var targetId = scrollToFeaturesButton.getAttribute("href");
+            var targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+              var targetOffset = targetElement.offsetTop;
+              var duration = 800; // Duration of the scroll animation in milliseconds
+              var startTime = performance.now();
+              var startOffset = window.pageYOffset;
+              var distance = targetOffset - startOffset;
+
+              function scrollStep(timestamp) {
+                var progress = timestamp - startTime;
+                var percentage = Math.min(progress / duration, 1);
+                window.scrollTo(
+                  0,
+                  startOffset + distance * easeInOutQuad(percentage)
+                );
+
+                if (progress < duration) {
+                  requestAnimationFrame(scrollStep);
+                }
+              }
+
+              // Easing function for smooth scrolling
+              function easeInOutQuad(t) {
+                return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+              }
+
+              requestAnimationFrame(scrollStep);
+            }
+          });
+        }
+      });
+    </script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"
+      type="8f4420f43736fbdc46d735ec-text/javascript"
+    ></script>
+    <script type="8f4420f43736fbdc46d735ec-text/javascript">
+          var typedprimary = new Typed(".typing-heading__primary", {
+            strings: ["", "Real-time Feedback", "Webcam-only usage", "Workout analysis", "Workout History", "Pose Corrections","Powered By Ai"],
+            typeSpeed: 75,
+            backSpeed: 50,
+            backDelay: 800,
+            startDelay: 500,
+            loop: true,
+            showCursor: true,
+            cursorChar: "|",
+            attr: null,
+          });
+            var typedsecondary = new Typed(".typing-heading__secondary", {
+            strings: ["", "Personalized training", "Smarter workouts", "Get In Shape", "Optimize workouts", "Next-level training", "Reach goals faster", "Fitness made simple", "Generate unit tests", "Achieve greatness"],
+            typeSpeed: 75,
+            backSpeed: 50,
+            backDelay: 800,
+            startDelay: 500,
+            loop: true,
+            showCursor: true,
+            cursorChar: "|",
+            attr: null,
+      });
+    </script>
+
+    <script
+      src="{% static 'js/rocket-loader.min.js' %}"
+      data-cf-settings="8f4420f43736fbdc46d735ec-|49"
+      defer
+    ></script>
+
+    <!-- #endregion -->
+  </body>
+</html>

@@ -1,0 +1,415 @@
+{% extends 'pages/user.html' %}
+
+<!-- #region[Yellow] title -->
+
+{% block title %} {{ workout_instance.name }} {% endblock %}
+
+<!-- #endregion -->
+
+<!-- #region[Cyan] Css -->
+
+{% block extra_css %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/workouts/woork.css' %}" />
+<link href="{% static 'css/pages/main.css' %}" rel="stylesheet" type="text/css" />
+
+
+<!-- Font -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
+  type="8f4420f43736fbdc46d735ec-text/javascript"></script>
+<script type="8f4420f43736fbdc46d735ec-text/javascript">
+         WebFont.load({  google: {    families: ["Syne:regular,600,700"]  }});
+         </script>
+{% endblock extra_css %}
+
+<!-- #endregion -->
+
+{% block content %}
+
+
+<style>
+  h2 {
+    color: rgba(0, 150, 250, 0.815);
+    margin-top: 0;
+    margin-bottom: 20px;
+    margin-top: -50px;
+    font-family: Syne, sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 36px;
+  }
+</style>
+
+
+
+<!-- #region[White] No Workouts -->
+
+{% if workout_instance is None %}
+
+<div class="non" style="display: flex; 
+                              justify-content: center; 
+                              align-items: center; 
+                              height: 100vh;">
+
+  <h2 style="font-size: 70px;  
+                     color:  var(--text-color);">
+    No Workouts
+  </h2>
+
+</div>
+
+{% endif %}
+<!-- #endregion -->
+
+
+<!-- #region[Blue] Banner -->
+
+<section class="section-banner">
+  <div class="container mt-head">
+    <aside class="home__hero">
+      <div id="banner_Content" class="home-hero__content">
+        <h1 class="banner_Largetxt">
+          {{ workout_instance.name }}
+
+        </h1>
+        <p class="txt paragraph-normal">
+
+          Reignite your fitness journey with AI. Say goodbye to generic workouts and hello to personalized training.
+          Experience smarter methods tailored to your needs. Enjoy dynamic routines filled with activities you love.
+          Meet your AI personal trainer and revolutionize your approach to fitness.
+          <br />
+          </h5>
+
+        <div class="banner_buttons">
+          <button id="start-button" onclick="startCamera()">
+            <h4>Start Workout</h4>
+          </button>
+
+          <div class="button-container">
+            <input type="file" id="videoInput" name="video_file" accept="video/*" style="display: none" />
+            <button id="uploadButton"><h4>Upload Video</h4></button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="banner_Video" class="home-hero__video">
+
+        <div class="banner_video_Container">
+          <div class="banner-video">
+
+            <video autoplay loop muted frameborder="0" style="
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;" allow="autoplay; fullscreen" allowfullscreen>
+              <source src="{{ workout_instance.video.url }}" type="video/mp4" />
+            </video>
+            <!-- <iframe title="NeuroFitness"
+                      src="{{ workout_instance.video.url }}" style="
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                          " frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
+          </div>
+
+        </div>
+
+      </div>
+    </aside>
+  </div>
+</section>
+<script>
+
+ var video_uploded = false;
+  document.getElementById('uploadButton').addEventListener('click', function () {
+    document.getElementById('videoInput').click();
+  });
+
+  document.getElementById('videoInput').addEventListener('change', function () {
+    if (this.files && this.files[0]) {
+      handleUpload();
+    } else {
+      console.error('No video selected for upload');
+    }
+  });
+
+  function handleUpload() {
+    var fileInput = document.getElementById('videoInput');
+    var file = fileInput.files[0];
+    var formData = new FormData();
+    formData.append('video_file', file);
+
+    fetch("{% url 'start_camera' %}", {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        alert('Video uploaded successfully');
+        video_uploded = true
+        startCamera();
+
+      })
+      .catch(error => {
+        console.error('Error uploading video:', error);
+      });
+  }
+
+
+  var isCameraStarted = false;
+  function startCamera() {
+    // // Extract the value of 'msw_name' from the title
+
+    // Get the current URL
+    var currentUrl = window.location.href;
+
+    // Define the substring to remove
+    var substringToRemove = "http://127.0.0.1:8000/workout/";
+    var substringToRemove2 = "/";
+    var substringToRemove3 = "%20";
+
+
+    // Remove the substring from the URL
+    var modifiedUrl = currentUrl.replace(substringToRemove, "");
+    var modifiedUrl = modifiedUrl.replace(substringToRemove2, "");
+    var mswName = modifiedUrl.replace(substringToRemove3, " ");
+
+    var cameraUrl = "/camera/" + encodeURIComponent(mswName) + "/?startCamera=true&value=" + encodeURIComponent(video_uploded.toString());
+    window.location.href = cameraUrl;
+
+  }
+
+
+
+</script>
+<!-- #endregion -->
+
+
+<!-- #region[Violet] pro Tip -->
+
+<section class="section-protip">
+  <div class="container mt-head">
+
+    <h2>Pro tip</h2>
+    <h5>{{ protip }}</h5>
+
+
+
+  </div>
+</section>
+
+<!-- #endregion -->
+
+
+<!-- #region[Green] How to-->
+
+<section class="section-how">
+
+  <div class="container mt-head">
+
+    <h2>How To</h2>
+    <ol>
+      {% for sentence in howto_sentences %}
+      <li>{{ sentence }}</li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<!-- #endregion -->
+
+
+<!-- #region[Gold] Equipment -->
+
+<section class="section-equipment">
+  <div class="container mt-head">
+
+    <h2>Equipments</h2>
+
+    {% for label, description in equipment_labels %}
+    <h4>{{ label }}</h4>
+    <h5 style="color: rgb(141, 137, 137)">{{ description }}</h5>
+
+    {% endfor %}
+  </div>
+</section>
+
+<!-- #endregion -->
+
+<!-- #region[Red] Primary Muscle Group -->
+<section class="section-pmusclegroup">
+  <div class="container mt-head">
+
+    <h2>Primary Muscle Groups</h2>
+    <div class="cards">
+
+      <div class="card">
+        <img src="{{ workout_instance.primary_image.url }}" alt="upper_chest3">
+        <h5>Upper Chest</h5>
+
+      </div>
+
+      <div class="card">
+        <img src="{{ workout_instance.primary_image.url }}" alt="upper_chest3">
+
+
+        <h5>Lower Chest</h5>
+      </div>
+
+    </div>
+</section>
+
+<!-- #endregion -->
+
+
+<!-- #region[White] Secondary Muscle Group -->
+<section class="section-smusclegroup">
+  <div class="container mt-head">
+
+    <h2>Secondary Muscle Groups</h2>
+    <div class="cards">
+
+      <div class="card">
+        <img src="{{ workout_instance.primary_image.url }}" alt="upper_chest3">
+        <h5>Front Shoulder</h5>
+
+      </div>
+
+      <div class="card">
+        <img src="{{ workout_instance.primary_image.url }}" alt="upper_chest3">
+
+
+        <h5>Lower Triceps</h5>
+      </div>
+
+
+      <div class="card">
+        <img src="{{ workout_instance.primary_image.url }}" alt="upper_chest3">
+
+        <h5>Outer Triceps</h5>
+
+      </div>
+
+      <div class="card">
+
+        <img src="{{ workout_instance.primary_image.url }}" alt="upper_chest3">
+        <h5>Upper Tricep</h5>
+
+      </div>
+
+
+    </div>
+  </div>
+</section>
+<!-- #endregion -->
+
+<!-- #region[Cyan] Variation -->
+<section class="section-variation">
+  <div class="container mt-head">
+
+    <h2 style=" text-align: left; "> Variations </h2>
+    <h5 style="color:rgb(141, 137, 137);">Make sure to always use weight clips whenever you use a barbell, to prevent
+      the plates from sliding off.</h5>
+    <div class="cards">
+
+      <div class="card">
+        <img src="{{ workout_instance.primary_image.url }}" alt="upper_chest3">
+        <h5>Decline Barbell Pullover</h5>
+
+      </div>
+
+      <div class="card">
+        <img src="{{ workout_instance.primary_image.url }}" alt="upper_chest3">
+
+
+        <h5>Incline Bench</h5>
+      </div>
+
+
+      <div class="card">
+        <img src="{{ workout_instance.primary_image.url }}" alt="upper_chest3">
+
+        <h5>Bench Press</h5>
+
+      </div>
+
+      <div class="card">
+
+        <img src="{{ workout_instance.primary_image.url }}" alt="upper_chest3">
+        <h5>Decline Barbell Bench Press</h5>
+
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+<!-- #endregion -->
+
+
+<!-- #region[Brown] Alternatives -->
+<section class="section-Alternatives">
+  <div class="container mt-head">
+
+    <h2 style=" text-align: left; "> Alternatives </h2>
+    <h5 style="color:rgb(141, 137, 137);">Exercises that target the same primary muscle groups with different equipment.
+    </h5>
+    <div class="cards">
+
+
+      <div class="card">
+        <img src="{{ workout_instance.primary_image.url }}" alt="upper_chest3">
+        <h5>Decline Barbell Pullover</h5>
+
+      </div>
+
+      <div class="card">
+        <img src="{{ workout_instance.primary_image.url }}" alt="upper_chest3">
+
+
+        <h5>Incline Bench</h5>
+      </div>
+
+
+      <div class="card">
+        <img src="{{ workout_instance.primary_image.url }}" alt="upper_chest3">
+
+        <h5>Bench Press</h5>
+
+      </div>
+
+      <div class="card">
+
+        <img src="{{ workout_instance.primary_image.url }}" alt="upper_chest3">
+        <h5>Decline Barbell Bench Press</h5>
+
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+<!-- #endregion -->
+
+
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/ufCGbSMYgNs?si=kWdlHdOv_63k9g6-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+
+
+<!-- #region[Violet] Script Js  -->
+
+
+<script src="{% static 'js/rocket-loader.min.js' %}" data-cf-settings="8f4420f43736fbdc46d735ec-|49" defer></script>
+
+<!-- #endregion -->
+
+{% endblock content %}

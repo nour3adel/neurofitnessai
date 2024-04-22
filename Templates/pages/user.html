@@ -1,0 +1,222 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% if user_info %}{{ user_info.firstname }}  {% endif %}| Home{% endblock %}</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!----======== favicon ======== -->
+    <link rel="icon" type="image/x-icon" href=" {% static 'images/home/favicon.png' %} ">
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="{% static 'css/pages/ussr.css' %}">
+
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+   
+    {% block extra_css %}{% endblock %}
+
+</head>
+
+<body>
+
+    <!-- #region[Red] SideMenu -->
+
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                  <img src="{% if user_info and user_info.picture %}{{ user_info.picture }}{% endif %}" alt="User Profile Picture">
+
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name">{% if user_info %}{{ user_info.firstname }} {{ user_info.lastname }} {% endif %}</span>
+                    <span class="profession">{% if user_info %}{{ user_info.level }} {% endif %}</span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input id="search-input" type="text" placeholder="Search...">
+                </li>
+
+
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        
+                        <a href="{% url 'dashboard' %}">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="{% url 'muscleGroups' %}">
+                            <i class="bx bx-dumbbell icon"></i>
+                            <span class="text nav-text">Muscle Groups</span>
+                        </a>
+                    </li>
+                    
+                    
+
+                    <li class="nav-link">
+                        <a href="{% url 'profile' %}">
+                            <i class='bx bx-user icon'></i>
+                            <span class="text nav-text">Profile</span>
+                        </a>
+                    </li>
+
+
+
+
+                    <li class=" nav-link">
+                        <a href="{% url 'history' %}" >
+                            <i class='bx bx-data icon'></i>
+                            <span class="text nav-text">History</span>
+                        </a> 
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="{% url 'logout' %}">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+
+
+                    </div>
+                    <span class="mode-text text">Light mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+
+            </div>
+        </div>
+ 
+    </nav>
+
+    <!-- #endregion -->
+
+    <!-- #region[Yellow] content -->
+
+    <section id="content" class="home">
+        {% block content %}{% endblock %}
+    </section>
+
+    <!-- #endregion -->
+    
+    <!-- #region[Blue] Js Script -->
+
+    <!-- <script src="{% static 'js/usserscript.js' %} "></script> -->
+
+    <script>
+        $(document).ready(function() {
+            // Function to handle search
+            function filterCards() {
+                var searchValue = $('#search-input').val().toLowerCase();
+
+                // Loop through each card
+                $('.card').each(function() {
+                    var cardTitle = $(this).find('h2, p').text().toLowerCase();
+                    // Check if the card matches the search
+                    var isMatch = cardTitle.includes(searchValue);
+
+                    // Show/hide based on search match
+                    if (isMatch) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+
+            // Event listener for search input
+            $('#search-input').on('input', function() {
+                filterCards();
+            });
+        });
+
+ 
+        const body = document.querySelector('body');
+        const sidebar = body.querySelector('nav');
+        const toggle = body.querySelector(".toggle");
+        const modeSwitch = body.querySelector(".toggle-switch");
+        const modeText = body.querySelector(".mode-text");
+       
+
+        // Function to set the mode based on localStorage
+        function setModeFromLocalStorage() {
+            const mode = localStorage.getItem('mode');
+            console.log("Retrieved mode from localStorage:", mode);
+            if (mode === 'light') {
+                body.classList.add('light');
+                modeText.innerText = "Dark mode";
+            } else {
+                body.classList.remove('light');
+                modeText.innerText = "Light mode";
+            }
+        }
+
+      
+
+
+        // Function to set the state of the toggle based on localStorage
+        function setToggleStateFromLocalStorage() {
+            const toggleState = localStorage.getItem('toggleState');
+            console.log("Retrieved toggle state from localStorage:", toggleState);
+            if (toggleState === 'closed') {
+                sidebar.classList.add('close');
+            } else {
+                sidebar.classList.remove('close');
+            }
+        }
+        // Initialize mode and toggle state from localStorage
+        setModeFromLocalStorage();
+        setToggleStateFromLocalStorage();
+
+        toggle.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+            const toggleState = sidebar.classList.contains("close") ? 'closed' : 'open';
+            localStorage.setItem('toggleState', toggleState);
+            console.log("Stored toggle state in localStorage:", toggleState);
+         });
+
+        modeSwitch.addEventListener("click", () => {
+            body.classList.toggle("light");
+            const mode = body.classList.contains("light") ? 'light' : 'dark';
+            localStorage.setItem('mode', mode);
+            console.log("Stored mode in localStorage:", mode);
+
+            if (body.classList.contains("light")) {
+                modeText.innerText = "Dark mode";
+            } else {
+                modeText.innerText = "Light mode";
+            }
+        });
+            </script>
+
+    <!-- #endregion -->
+
+</body>
+
+</html>

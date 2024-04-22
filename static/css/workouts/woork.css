@@ -1,0 +1,289 @@
+
+
+body.light  h1 {
+  color: var(--toggle-color);
+}
+
+body.light  h3 {
+  color: var(--toggle-color);
+}
+body.light  h4 {
+  color: var(--toggle-color);
+}
+body.light  h5 {
+  color: var(--text-color);
+}
+body.light  h6 {
+  color: var(--toggle-color);
+}
+body.light  p {
+  color: var(--toggle-color);
+}
+body.light  li {
+  color: var(--toggle-color);
+}
+body.light  button {
+  background-color: rgba(81, 0, 255, 0.822);
+}
+
+body.light  button h4{
+ color: white;
+}
+body.light .section-banner,
+body.light .section-smusclegroup,
+body.light .section-pmusclegroup
+{
+  background: radial-gradient(45.2% 36.8% at 50% 41.099999999999994%,
+  rgba(255, 255, 255, 0.25) 0%,
+  rgba(253, 253, 253, 0) 100%);
+}
+
+
+
+
+
+
+.home-hero__video {
+    background-image: repeating-linear-gradient(
+      60deg,
+      #000000,
+      #000000 13%,
+      #000000 27%,
+      #000000 39%,
+      #000000 51%,
+      #000000 64%,
+      #000000 77%,
+      #000000 89%,
+      #000000
+    );
+    border-radius: 10px;
+    padding: 2px;
+  }
+  
+
+  hr {
+    border: none;
+    height: 1px;
+    background-color: rgb(44, 43, 43);
+  }
+  
+  li {
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  h3,
+  h4,
+  p {
+    text-align: left;
+  }
+  
+  .cards {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .card {
+    flex-basis: 280px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 8px;
+  }
+  
+  .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .card p {
+    transform: translate(35%, 0%);
+    color: rgb(255, 255, 255);
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: rgba(79, 0, 250, 0.555);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 50px;
+
+  }
+  
+  button:hover {
+    background-color: #0c647a;
+  }
+  
+  
+  .section-how,
+  .section-banner,
+  .section-equipment,
+  .section-Alternatives,
+  .section-variation,
+  .section-pmusclegroup,
+  .section-smusclegroup
+  {
+    display: block;
+  
+    border: 0 solid #fff;
+    border-top: 1px solid #262626;
+    border-bottom-color: #262626;
+    padding: 32px 30px;
+    position: relative;
+  
+  }
+  
+  .section-protip
+  {
+    display: block;
+  
+    border-bottom-color: #262626;
+    padding: 32px 30px;
+    position: relative;
+  
+  }
+  
+  
+  
+  h1 {
+    color: var(--toggle-color) ;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: Syne, sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 40px;
+  }
+  
+  h2 {
+   color:  rgba(0, 150, 250, 0.815);
+    margin-top: 0;
+    margin-bottom: 20px;
+    margin-top: -50px;
+    font-family: Syne, sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 36px;
+  }
+  
+  h3 {
+    color: var(--toggle-color) ;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: Syne, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+  
+  h4 {
+    color: var(--toggle-color) ;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: Syne, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+  
+  h5,li {
+    color: var(--toggle-color) ;
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-family: Syne, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+  
+  h6 {
+    color: var(--toggle-color) ;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: Syne, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 18px;
+  }
+  
+  p {
+    color: var(--alto);
+    margin-bottom: 10px;
+  }
+  
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
+  
+  @media screen and (max-width: 991px) {
+    h1 {
+      font-size: 34px;
+    }
+  
+    h2 {
+      font-size: 30px;
+    }
+  
+    h3 {
+      font-size: 22px;
+    }
+  
+    h4 {
+      font-size: 16px;
+    }
+  }
+  
+  @media screen and (max-width: 479px) {
+    h1 {
+      font-size: 30px;
+      line-height: 40px;
+    }
+  
+    h2 {
+      font-size: 30px;
+      line-height: 36px;
+    }
+  
+    h3 {
+      font-size: 18px;
+    }
+  }
+  
+  .section-banner,
+  .section-pmusclegroup,
+  .section-smusclegroup
+  
+  {
+    background: radial-gradient(45.2% 36.8% at 50% 41.099999999999994%,
+        rgba(79, 0, 250, 0.25) 0%,
+        rgba(0, 2, 18, 0) 100%);
+  }
+  /* .section-protip
+  {
+    background: radial-gradient(99.2% 80.8% at 80% 0.099999999999994%,
+        rgba(79, 0, 250, 0.25) 0%,
+        rgba(0, 2, 18, 0) 100%);
+  } */
+  
+  
+   /* .section-banner {
+      background-image: url("https://assets-global.website-files.com/65301d49e87fbf23cc9a1e60/654cd27797dfda19022b3176_bg.png");
+      background-position: 50% -15%;
+      background-repeat: no-repeat;
+      background-size: 100vw;
+      background-attachment: scroll;
+      position: relative;
+      overflow: hidden;
+    }
+  
+    
+    .section-developers{
+      background-position: 50% 0;
+    } */

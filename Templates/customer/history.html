@@ -1,0 +1,55 @@
+{% extends 'pages/user.html' %}
+
+<!-- #region[Yellow] title -->
+
+{% block title %}  History  {% endblock title %}
+
+<!-- #endregion -->
+
+<!-- #region[Cyan] Css -->
+
+{% block extra_css %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/customer/history.css' %}">
+
+{% endblock extra_css%}
+
+<!-- #endregion -->
+
+<!-- #region[Red] Content -->
+
+{% block content %}
+
+<div class="text">History</div>
+
+<div class="text"> 
+    <table>
+        <thead>
+            <tr>
+                <th>Workout</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Correct Reps</th>
+                <th>Incorrect Reps</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hist in history %}
+            <tr>
+                <td>{{ hist.workout_name }}</td>
+                <td>{{ hist.start_date }}</td>
+                <td>{{ hist.end_date }}</td>
+                <td>{{ hist.correct_reps }}</td>
+                <td>{{ hist.incorrect_reps }}</td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}
+
+<!-- #endregion -->

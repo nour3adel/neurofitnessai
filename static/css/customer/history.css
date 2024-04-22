@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Titillium+Web&display=swap");
+
+body {
+  font-family: "Chakra Petch", sans-serif;
+  font-family: "Titillium Web", sans-serif;
+  background-color: #000000;
+  font-weight: 300;
+}
+
+a {
+  -webkit-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+}
+a,
+a:hover {
+  text-decoration: none !important;
+}
+
+.content {
+  margin-top: 50px;
+  width: 100%;
+}
+
+h2 {
+  font-size: 20px;
+  color: #fff;
+}
+
+
+.center {
+  margin: 0 auto; /* Set left and right margins to 'auto' to center horizontally */
+}
+
+
+
+table thead tr,
+table thead th {
+  padding-bottom: 30px;
+  border-top: none;
+  border-bottom: none !important;
+  color:  var(--text-color);
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+table tbody th,
+table tbody td {
+  color: #777;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  font-weight: 300;
+  font-size: 17px;
+  border: none;
+  -webkit-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+}
+
+table tbody th small,
+table tbody td small {
+  color: #777;
+  font-weight: 300;
+}
+table tbody th a,
+table tbody td a {
+  color:  var(--text-color);
+}
+table tbody th .more,
+table tbody td .more {
+  color:  var(--text-color);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+table tbody tr {
+  -webkit-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+}
+table tbody tr:hover td,
+table tbody tr:focus td {
+  color:  var(--text-color);
+}
+table tbody tr:hover td a,
+table tbody tr:focus td a {
+  color: #14b3fd;
+}
+table tbody tr:hover td .more,
+table tbody tr:focus td .more {
+  color: #14b3fd;
+}
+table .td-box-wrap {
+  padding: 0;
+}
+table .box {
+  background: #fff;
+  border-radius: 4px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+table .box td,
+table .box th {
+  border: none !important;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  max-width: 100%;
+  margin: 0 auto;
+ 
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+}
+
+td small {
+  display: block;
+  color: #777;
+  font-size: 80%;
+}
+
+
+body.dark .switch::before {
+  left: 20px;
+}
+
+.History {
+  position: absolute;
+  top: 0;
+  top: 0;
+  height: 100vh;
+  width: calc(100% - 250px);
+  background-color: var(--body-color);
+  transition: var(--tran-05);
+
+}
+.History .text {
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--text-color);
+  padding: 12px 60px;
+}
+
+.History .content {
+  margin-left: 100px;
+}
+
+body.dark .History .text {
+  color: var(--text-color);
+}
+
+@media only screen and (max-width: 700px) {
+.History .content {
+  margin-left: 30px;
+}
+
+table {
+
+  max-width: 20px;
+
+ 
+}
+}

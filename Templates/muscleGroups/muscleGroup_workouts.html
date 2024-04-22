@@ -1,0 +1,53 @@
+{% extends 'pages/user.html' %}
+
+<!-- #region[Yellow] title -->
+
+{% block title %} {{muscle_groups}} {% endblock %}
+
+<!-- #endregion -->
+
+<!-- #region[Cyan] Css -->
+
+{% block extra_css %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/workouts/msgp.css' %}" />
+
+{% endblock extra_css %}
+
+<!-- #endregion -->
+
+<!-- #region[Red] Content -->
+
+{% block content %}
+
+<div class="text">{{muscle_groups}}</div>
+
+{% if muscle_group_workout is None %}
+<div class="non" style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  ">
+  <h2 style="font-size: 40px; color: var(--text-color)">
+    No Muscle Group Workouts
+  </h2>
+</div>
+{% endif %}
+
+
+<div class="cards">
+
+{% for muscleGroup in muscle_group_workout %}
+
+  <a href="{% url 'workouts' muscleGroup.msw_name %}" class="card">
+    <img src="{{muscleGroup.image.url}}" alt="upper_chest" />
+    <h2>{{ muscleGroup.msw_name }}</h2>
+  </a>
+
+{% endfor %}
+
+</div>
+
+{% endblock content %}
+
+<!-- #endregion -->

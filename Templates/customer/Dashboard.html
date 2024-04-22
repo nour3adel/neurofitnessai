@@ -1,0 +1,409 @@
+{% extends 'pages/user.html' %}
+{% load static %}
+
+<!-- #region[Yellow] title -->
+
+{% block title %}  Dahboard {% endblock title %}
+
+<!-- #endregion -->
+
+<!-- #region[Cyan] Css -->
+
+{% block extra_css %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/customer/d.css' %}">
+
+{% endblock extra_css%}
+
+<!-- #endregion -->
+
+<!-- #region[Red] Content -->
+
+{% block content %}
+
+<div class="text">Dashboard</div>
+
+    <!--  Main wrapper -->
+    <div class="body-wrapper bg-black">
+
+        <div class="container-fluid">
+          <!--  Row 1 -->
+          <div class="row">
+  
+  
+            <!-- #region [Red] Workout -->
+            <div class="col-lg-8 d-flex align-items-stretch">
+              <div class="card w-100 bg-black rounded border border-dark-light">
+                <div class="card-body">
+                  <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                    <div class="mb-3 mb-sm-0">
+                      <h5 class="card-title fw-semibold text-white">Workout Overview</h5>
+                    </div>
+                    <div>
+                      <select class="form-select text-white border border-dark">
+                        <option value="1">March 2023</option>
+                        <option value="2">April 2023</option>
+                        <option value="3">May 2023</option>
+                        <option value="4">June 2023</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div id="chart"></div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- #endregion -->
+  
+  
+            <div class="col-lg-4">
+  
+              <div class="row">
+  
+                <!-- #region[Blue] Yearly -->
+  
+                <div class="col-lg-12">
+                  <!-- Yearly Breakup -->
+                  <div class="card overflow-hidden ">
+                    <div class="card-body p-4 bg-black rounded border border-dark-light shadow">
+                      <h5 class="card-title mb-9 fw-semibold text-white">Yearly Training</h5>
+                      <div class="row align-items-center">
+                        <div class="col-8">
+                          <h4 class="fw-semibold mb-3 text-white-50">2,358</h4>
+                          <div class="d-flex align-items-center mb-3">
+                            <span
+                              class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
+                              <i class="ti ti-arrow-up-left text-success"></i>
+                            </span>
+                            <p class="text-white-50 me-1 fs-3 mb-0">+9%</p>
+                            <p class="fs-3 mb-0">last year</p>
+                          </div>
+                          <div class="d-flex align-items-center">
+                            <div class="me-4">
+                              <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
+                              <span class="fs-2">2023</span>
+                            </div>
+                            <div>
+                              <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
+                              <span class="fs-2">2024</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="d-flex justify-content-center">
+                            <div id="breakup"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- #endregion -->
+  
+  
+                <!-- #region[Brown] Month -->
+                <div class="col-lg-12">
+  
+                  <div class="card bg-black rounded border border-dark-light shadow">
+                    <div class="card-body ">
+                      <div class="row alig n-items-start">
+                        <div class="col-8">
+                          <h5 class="card-title mb-9 fw-semibold text-white"> Monthly Training </h5>
+                          <h4 class="fw-semibold mb-3 text-white-50 ">820</h4>
+                          <div class="d-flex align-items-center pb-1">
+                            <span
+                              class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
+                              <i class="ti ti-arrow-down-right text-danger"></i>
+                            </span>
+                            <p class="text-white-50 me-1 fs-3 mb-0">+9%</p>
+                            <p class="fs-3 mb-0">last Month</p>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="d-flex justify-content-end">
+                            <div
+                              class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                              <i class="ti ti-currency-dollar fs-6"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="earning"></div>
+                  </div>
+                </div>
+  
+                <!-- #endregion -->
+  
+              </div>
+            </div>
+          </div>
+          <div class="row">
+  
+            <!-- #region[Cyan] Recent -->
+            <div class="col-lg-4 d-flex align-items-stretch">
+              <div class="card w-100 bg-black rounded border border-dark-light shadow ">
+                <div class="card-body p-4">
+                  <div class="mb-4">
+                    <h5 class="card-title fw-semibold text-white ">Recent Workouts</h5>
+                  </div>
+                  <ul class="timeline-widget mb-0 position-relative mb-n5">
+                    <li class="timeline-item d-flex position-relative overflow-hidden">
+                      <div class="timeline-time text-white-50 flex-shrink-0 text-end">09:30</div>
+                      <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                        <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
+                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                      </div>
+                      <div class="timeline-desc fs-3 text-white-50 mt-n1 fw-semibold">Barbell Wide Bench Press</div>
+                    </li>
+                    <li class="timeline-item d-flex position-relative overflow-hidden">
+                      <div class="timeline-time text-white-50 flex-shrink-0 text-end">10:00 am</div>
+                      <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                        <span class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
+                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                      </div>
+                      <div class="timeline-desc fs-3 text-white-50 mt-n1 fw-semibold">Decline Barbell Pullover <a
+                          href="javascript:void(0)" class="text-primary d-block fw-normal">New Record</a>
+                      </div>
+                    </li>
+                    <li class="timeline-item d-flex position-relative overflow-hidden">
+                      <div class="timeline-time text-white-50 flex-shrink-0 text-end">12:00 am</div>
+                      <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                        <span class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
+                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                      </div>
+                      <div class="timeline-desc fs-3 text-white-50 mt-n1 fw-semibold">Side Shoulder</div>
+                    </li>
+                    <li class="timeline-item d-flex position-relative overflow-hidden">
+                      <div class="timeline-time text-white-50 flex-shrink-0 text-end">09:30 am</div>
+                      <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                        <span class="timeline-badge border-2 border border-warning flex-shrink-0 my-8"></span>
+                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                      </div>
+                      <div class="timeline-desc fs-3 text-white-50 mt-n1 fw-semibold">Calves <a
+                          href="javascript:void(0)" class="text-primary d-block fw-normal">New Record</a>
+                      </div>
+                    </li>
+                    <li class="timeline-item d-flex position-relative overflow-hidden">
+                      <div class="timeline-time text-white-50 flex-shrink-0 text-end">09:30 am</div>
+                      <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                        <span class="timeline-badge border-2 border border-danger flex-shrink-0 my-8"></span>
+                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                      </div>
+                      <div class="timeline-desc fs-3 text-white-50 mt-n1 fw-semibold">Push ups
+                      </div>
+                    </li>
+                    <li class="timeline-item d-flex position-relative overflow-hidden">
+                      <div class="timeline-time text-white-50 flex-shrink-0 text-end">12:00 am</div>
+                      <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                        <span class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
+                      </div>
+                      <div class="timeline-desc fs-3 text-white-50 mt-n1 fw-semibold">Outer Triceps</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+  
+            <!-- #endregion -->
+  
+            <!-- #region[Green] Recent 2 -->
+            <div class="col-lg-8 d-flex align-items-stretch">
+              <div class="card w-100 bg-black rounded border border-dark-light shadow">
+                <div class="card-body p-4">
+                  <h5 class="card-title fw-semibold mb-4 text-white">Recent Workouts (History)</h5>
+                  <div class="table-responsive">
+                    <table class="table text-nowrap mb-0 align-middle">
+                      <thead class="text-white-50 fs-4">
+                        <tr>
+                          <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0 text-white">Id</h6>
+                          </th>
+                          <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0 text-white">Workout</h6>
+                          </th>
+                          <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0 text-white">Date</h6>
+                          </th>
+                          <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0 text-white">Correct Reps</h6>
+                          </th>
+                          <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0 text-white">Incorrect Reps</h6>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0 text-white">1</h6>
+                          </td>
+                          <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-1 text-white-50">Bench Press</h6>
+                            <span class="fw-normal ">Upper Chest</span>
+                          </td>
+                          <td class="border-bottom-0">
+                            <p class="mb-0 fw-normal">2/2/2024</p>
+                          </td>
+                          <td class="border-bottom-0">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge bg-success rounded-3 fw-semibold text-black">31 Reps</span>
+                            </div>
+                          </td>
+                          <td class="border-bottom-0">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge bg-danger rounded-3 fw-semibold">3 Reps</span>
+                            </div>
+                            <!-- <h6 class="fw-semibold mb-0 text-white fs-4">11 Reps</h6> -->
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0 text-white">2</h6>
+                          </td>
+                          <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-1 text-white-50">Deadlift</h6>
+                            <span class="fw-normal">Hamstring</span>
+                          </td>
+                          <td class="border-bottom-0">
+                            <p class="mb-0 fw-normal">15/8/2023</p>
+                          </td>
+                          <td class="border-bottom-0">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge bg-success rounded-3 fw-semibold text-black">22 Reps</span>
+                            </div>
+                          </td>
+                          <td class="border-bottom-0">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge bg-danger rounded-3 fw-semibold">2 Reps</span>
+                            </div>
+                            
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0 text-white">3</h6>
+                          </td>
+                          <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-1 text-white-50">Dumbell pullover</h6>
+                            <span class="fw-normal">Lats</span>
+                          </td>
+                          <td class="border-bottom-0">
+                            <p class="mb-0 fw-normal">4/11/2023</p>
+                          </td>
+                          <td class="border-bottom-0">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge bg-success rounded-3 fw-semibold text-black">19 Reps</span>
+                            </div>
+                          </td>
+                          <td class="border-bottom-0">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge bg-danger rounded-3 fw-semibold">4 Reps</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0 text-white">4</h6>
+                          </td>
+                          <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-1 text-white-50">Incline Dumbell Fly</h6>
+                            <span class="fw-normal">Upper Chest</span>
+                          </td>
+                          <td class="border-bottom-0">
+                            <p class="mb-0 fw-normal">26/1/2023</p>
+                          </td>
+                          <td class="border-bottom-0">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge bg-success rounded-3 fw-semibold text-black">26 Reps</span>
+                            </div>
+                          </td>
+                          <td class="border-bottom-0">
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="badge bg-danger rounded-3 fw-semibold">8 Reps</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- #endregion -->
+       
+          </div>
+  
+          <!-- #region[Gold] Pictures -->
+  
+          <div class="row">
+            <div class="col-sm-6 col-xl-3">
+              <div class="card overflow-hidden bg-black rounded border border-dark-light shadow">
+                <div class="position-relative">
+                  <a href="javascript:void(0)"><img src="{% static 'images/workouts/Muscle_Groups/Quads.png' %}" class="card-img-top rounded-0"
+                      alt="..."></a>
+                </div>
+                <div class="card-body pt-3 p-4">
+                  <h6 class="fw-semibold fs-4 text-white">Quads</h6>
+                 
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+              <div class="card overflow-hidden bg-black rounded border border-dark-light shadow">
+                <div class="position-relative">
+                  <a href="javascript:void(0)"><img src="{% static 'images/workouts/Muscle_Groups/lats.png' %}" class="card-img-top rounded-0"
+                      alt="..."></a>
+                    </div>
+                    <div class="card-body pt-3 p-4">
+                      <h6 class="fw-semibold fs-4 text-white">Lats</h6>
+                     
+                    </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+              <div class="card overflow-hidden bg-black rounded border border-dark-light shadow">
+                <div class="position-relative">
+                  <a href="javascript:void(0)"><img src="{% static 'images/workouts/Muscle_Groups/lower_back.png' %}" class="card-img-top rounded-0"
+                      alt="..."></a>
+                    </div>
+                    <div class="card-body pt-3 p-4">
+                      <h6 class="fw-semibold fs-4 text-white">Lower Back</h6>
+                     
+                    </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+              <div class="card overflow-hidden bg-black rounded border border-dark-light shadow">
+                <div class="position-relative">
+                  <a href="javascript:void(0)"><img src="{% static 'images/workouts/Muscle_Groups/Front_shoulder.png' %}" class="card-img-top rounded-0"
+                      alt="..."></a>
+                    </div>
+                    <div class="card-body pt-3 p-4">
+                      <h6 class="fw-semibold fs-4 text-white">Front shoulder</h6>
+                     
+                    </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- #endregion -->
+       
+        </div>
+      </div>
+
+
+      <script src="{% static 'js/dash/libs/jquery/dist/jquery.min.js' %}"></script>
+      <script src="{% static 'js/dash/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %} "></script>
+      <script src="{% static 'js/dash/sidebarmenu.js' %}"></script>
+      <script src="{% static 'js/dash/app.min.js' %}"></script>
+      <script src="{% static 'js/dash/libs/apexcharts/dist/apexcharts.min.js' %}"></script>
+      <script src="{% static 'js/dash/libs/simplebar/dist/simplebar.js' %}"></script>
+      <script src="{% static 'js/dash/dashboard.js' %}"></script>
+
+{% endblock content %}
+
+<!-- #endregion -->

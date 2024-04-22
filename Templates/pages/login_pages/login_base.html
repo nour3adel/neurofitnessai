@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}{% endblock %}</title>
+    <!----======== favicon ======== -->
+    <link rel="icon" type="image/x-icon" href=" {% static 'images/home/favicon.png' %} ">
+
+    <link rel="stylesheet" href="{% static 'css/pages/login_reg/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/pages/login_reg/logreg.css' %}" />
+
+    <style>
+        .messages {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .messages li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border-color: #bee5eb;
+        }
+
+        .warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border-color: #ffeeba;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <main class="main">
+        {% block content %} {% endblock %}
+    </main>
+
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("passwordInput");
+            var eyeIcon = document.getElementById("eyeIcon");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.innerHTML = '<path d="M3 12H21" stroke="#718096" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>';
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.innerHTML = '<path d="M3.40625 3L21.4062 21" stroke="#718096" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10.9907 10.5869C10.6154 10.9619 10.4045 11.4707 10.4043 12.0012C10.4041 12.5317 10.6147 13.0406 10.9897 13.4159C11.3647 13.7912 11.8735 14.0021 12.404 14.0023C12.9345 14.0025 13.4434 13.7919 13.8187 13.4169" stroke="#718096" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.76925 5.36506C10.6267 5.11978 11.5144 4.9969 12.4062 5.00006C16.4062 5.00006 19.7392 7.33306 22.4062 12.0001C21.6283 13.3611 20.7942 14.5241 19.9032 15.4881M17.7633 17.3491C16.1323 18.4491 14.3483 19.0001 12.4062 19.0001C8.40625 19.0001 5.07325 16.6671 2.40625 12.0001C3.77525 9.60506 5.31925 7.82506 7.03825 6.65906" stroke="#718096" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

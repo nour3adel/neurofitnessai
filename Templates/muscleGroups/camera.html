@@ -1,0 +1,346 @@
+{% extends 'pages/user.html' %}
+
+<!-- #region[Yellow] title -->
+
+{% block title %} Training {% endblock %}
+
+<!-- #endregion -->
+
+<!-- #region[Cyan] Css -->
+
+{% block extra_css %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/workouts/camer.css' %}">
+
+
+
+{% endblock extra_css %}
+
+<!-- #endregion -->
+
+<!-- #region[Red] Content -->
+
+{% block content %}
+
+<div id="countdown">
+    <span id="countdown-value" style="color: antiquewhite; margin-left: 20px;">10</span>
+</div>
+<!-- Header Section  -->
+<div id="header">
+    <h1>N<span class="letter-f">F</span></h1>
+    <p id="feedback"> </p>
+    <button id="endworkout" onclick="stopCamera()"> End Workout</button>
+
+
+
+</div>
+<!-- End of Header Section -->
+
+<!-- Content Section  -->
+<div id="row">
+
+
+    <div id="container">
+
+        <div class="card card1">
+            <!-- <p id="status"  class="temp"></p> -->
+
+            <div class="card-header">
+                <span>Camera Status</span>
+
+            </div>
+
+            <p id="status" class="temp"></p>
+
+
+        </div>
+
+        <div class="card card2">
+
+            <div class="card-header">
+                <span>Stage</span>
+
+            </div>
+
+            <p id="stage" class="temp"></p>
+
+
+        </div>
+
+        <div class="card card3">
+
+            <div class="card-header">
+                <span>correct Reps</span>
+
+            </div>
+
+            <p id="correctreps" class="temp"></p>
+
+            <div class="temp-scale">
+                <span>Reps</span>
+            </div>
+        </div>
+
+        <div class="card card4">
+
+            <div class="card-header">
+                <span>Incorrect Reps</span>
+
+            </div>
+
+
+            <p id="incorrectreps" class="temp"></p>
+            <div class="temp-scale">
+                <span>Reps</span>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div id="video">
+        <!-- <img src="video-banner.jpg" alt="" srcset=""> -->
+        <img id="live-stream" src="" alt="Live Stream" style="display: none" />
+    </div>
+
+
+</div>
+
+
+<!-- End of Content Section -->
+<audio id="endAudio" src="{% static 'audio/start.wav' %}" preload="auto"></audio>
+<audio id="countdownaudio" src="{% static 'audio/cc.mp3' %}" preload="auto"></audio>
+<script>
+    var video_uploded = "";
+    // Check if the URL parameter 'startCamera' is present
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('startCamera')) {
+        startCamera(); // Start the camera if the parameter is present
+
+        // Retrieve the value parameter
+        video_uploded = urlParams.get('value');
+    }
+
+
+    var statusFetched = false; // Flag to track whether status has been fetched
+
+
+    var isCameraStarted = false;
+
+    function startCamera() {
+        var counter = 10;  // Set the initial counter value
+        var countdownElement = document.getElementById('countdown-value');
+        var currentUrl = window.location.href;
+
+        // Define the substring to remove
+        var substringToRemove = "http://127.0.0.1:8000/camera/";
+        var substringToRemove1 = "http://localhost/camera/";
+        var substringToRemove8 = "http://127.0.0.1:8000/camera";
+        var substringToRemove2 = "/";
+        var substringToRemove3 = "%20";
+        var substringToRemove6 = "%2520";
+        var substringToRemove = "%25";
+        var substringToRemove4 = "?startCamera=true&value=false";
+        var substringToRemove5 = "?startCamera=true&value=true";
+
+
+        // Remove the substring from the URL
+        var modifiedUrl = currentUrl.replace(substringToRemove, "");
+        modifiedUrl = modifiedUrl.replace(substringToRemove1, "");
+        modifiedUrl = modifiedUrl.replace(substringToRemove8, "");
+        modifiedUrl = modifiedUrl.replace(substringToRemove6, " ");
+        modifiedUrl = modifiedUrl.replace(substringToRemove4, "");
+        modifiedUrl = modifiedUrl.replace(substringToRemove5, "");
+
+        // Remove numbers from // Remove "%" from the name
+        modifiedUrl = modifiedUrl.replace(/%/g, "");
+
+        // Remove numbers from the name
+        modifiedUrl = modifiedUrl.replace(/\d+/g, " ");
+        modifiedUrl = modifiedUrl.replace(substringToRemove3, " ");
+        var lastChar = modifiedUrl.slice(-1);
+        if (lastChar === "/" || lastChar === "\\") {
+            // Remove the last character
+            modifiedUrl = modifiedUrl.slice(0, -1);
+        }
+        var mswName = modifiedUrl.replace(substringToRemove2, "");
+
+
+        var countdownInterval = setInterval(function () {
+            counter--;
+            countdownElement.textContent = counter;
+
+            if (counter <= 0) {
+                clearInterval(countdownInterval);
+                playstartSound();
+            }
+
+            if (video_uploded == "true") {
+
+                if (counter <= 0) {
+                    initiateFetch(mswName);
+                }
+            } else {
+                if (counter <= 6) {
+                    initiateFetch(mswName);
+                }
+            }
+        }, 1000);
+
+        playAudio(); // Start playing audio when the button is clicked
+    }
+    // Function to send request to Django view to play audio
+
+
+    function initiateFetch(workout) {
+        fetch(`/start_camera?workout=${workout}`)
+            .then(response => {
+                if (response.ok) {
+                    // Update UI
+
+                    document.getElementById('video').innerHTML = `<img id="live-stream" src="{% url 'webcam_feed' %}?workout=${workout}" alt="Live Stream">`;
+                    document.getElementById('countdown').style.display = 'none';
+                    document.getElementById('endworkout').style.display = 'inline-block';
+                    isCameraStarted = true;
+                    document.getElementById('status').style.display = 'block';
+
+                    document.getElementById('stage').style.display = 'block';
+                    document.getElementById('correctreps').style.display = 'block';
+                    document.getElementById('incorrectreps').style.display = 'block';
+                    document.getElementById('feedback').style.display = 'block';
+                    document.getElementById('live-stream').style.display = 'block';
+
+
+                    // Fetch status only if not already fetched
+                    if (!statusFetched) {
+                        // Call updateStatus once after the camera starts
+                        updateStatus();
+                        // Start updating status periodically
+                        setInterval(updateStatus, 1000);
+                        statusFetched = true; // Set the flag to true to indicate status fetched
+                    }
+                } else {
+
+                    console.error('Failed to start the camera');
+                }
+            })
+            .catch(error => {
+                console.error('Error starting the camera:', error);
+            });
+    }
+    // // Get the current URL
+
+
+    function stopCamera() {
+        fetch('/stop_camera')
+            .then(response => {
+                if (response.ok) {
+                    var currentUrl = window.location.href;
+
+                    // Define the substring to remove
+                    var substringToRemove = "http://127.0.0.1:8000/camera/";
+                    var substringToRemove1 = "http://localhost/camera/";
+                    var substringToRemove8 = "http://127.0.0.1:8000/camera";
+                    var substringToRemove2 = "/";
+                    var substringToRemove3 = "%20";
+                    var substringToRemove6 = "%2520";
+                    var substringToRemove = "%25";
+                    var substringToRemove4 = "?startCamera=true&value=false";
+                    var substringToRemove5 = "?startCamera=true&value=true";
+
+
+                    // Remove the substring from the URL
+                    var modifiedUrl = currentUrl.replace(substringToRemove, "");
+                    modifiedUrl = modifiedUrl.replace(substringToRemove1, "");
+                    modifiedUrl = modifiedUrl.replace(substringToRemove8, "");
+                    modifiedUrl = modifiedUrl.replace(substringToRemove6, " ");
+                    modifiedUrl = modifiedUrl.replace(substringToRemove4, "");
+                    modifiedUrl = modifiedUrl.replace(substringToRemove5, "");
+
+                    // Remove numbers from // Remove "%" from the name
+                    modifiedUrl = modifiedUrl.replace(/%/g, "");
+
+                    // Remove numbers from the name
+                    modifiedUrl = modifiedUrl.replace(/\d+/g, " ");
+                    modifiedUrl = modifiedUrl.replace(substringToRemove3, " ");
+                    var lastChar = modifiedUrl.slice(-1);
+                    if (lastChar === "/" || lastChar === "\\") {
+                        // Remove the last character
+                        modifiedUrl = modifiedUrl.slice(0, -1);
+                    }
+                    var mswName = modifiedUrl.replace(substringToRemove2, "");
+                    var cameraUrl = "/workout/" + mswName + "/";
+                    window.location.href = cameraUrl;
+
+
+
+
+                } else {
+                    console.error('Failed to stop the camera');
+                }
+            })
+            .catch(error => {
+                console.error('Error stopping the camera:', error);
+            });
+    }
+
+    // Function to play end sound
+    // Variable to track if the sound has been played
+
+
+    // Function to play end sound
+    function playstartSound() {
+        var audio = document.getElementById("endAudio");
+        audio.play();
+    }
+
+
+    // Function to send request to Django view to play audio
+
+    function playAudio() {
+        var audio = document.getElementById("countdownaudio");
+        audio.play();
+    }
+
+
+
+    function updateStatus() {
+        fetch('/webcam_status')
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                    alert("sassas");
+                } else {
+                    throw new Error('Failed to fetch');
+                }
+            })
+            .then(data => {
+
+                const statusElement = document.getElementById("status");
+                const correctrepsElement = document.getElementById("correctreps");
+                const incorrectrepsElement = document.getElementById("incorrectreps");
+                const stageelement = document.getElementById("stage");
+                const feedbackelement = document.getElementById("feedback");
+                if (data.status) {
+                    statusElement.textContent = "Opened";
+                } else {
+                    statusElement.textContent = "Closed";
+                }
+                correctrepsElement.textContent = data.correct_reps;
+                incorrectrepsElement.textContent = data.incorrect_reps;
+                stageelement.textContent = data.stage;
+                feedbackelement.textContent = data.feedback
+
+
+            })
+            .catch(error => {
+                console.error('Error fetching camera status:', error);
+            });
+    }
+</script>
+
+{% endblock content %}
+
+<!-- #endregion -->

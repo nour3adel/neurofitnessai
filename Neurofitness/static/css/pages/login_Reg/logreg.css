@@ -1,0 +1,263 @@
+/* Font */
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap");
+
+/* Colors and Typography */
+:root {
+  --white: #ffffff;
+  --interface-primary: #0c0c0e;
+  --interface-secondary: #747681;
+  --interface-background: #f4f8f7;
+  --interface-accent: #edcb88;
+
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+
+  --font-weight-bold: 700;
+  --font-weight-semibold: 600;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Body and HTML */
+body,
+html {
+  font-family: "Sora", sans-serif;
+  overflow-x: hidden;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  transition: all 0.3s ease;
+  transition-property: color, background-color, border-color, box-shadow;
+}
+
+/* Wrapper */
+.main {
+  background-color: var(--interface-primary);
+}
+/* #region Signin & Signup Button */
+
+.signbtn{
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-size: var(--font-size-lg);
+  display: inline-block;
+  transition: all 0.4s ease-in;
+  background-color: var(--white);
+  color: var(--interface-primary);
+  transition: all 0.4s ease-in;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+}
+
+
+.signbtn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(137deg, #9a11e9 0%, #2f005ea8 100%);
+  transition: all 0.35s;
+  border-radius: 30px;
+  z-index: -1;
+}
+
+.signbtn:hover {
+  color: var(--white);
+}
+
+.signbtn:hover::after {
+  width: 100%;
+}
+
+
+/* #endregion */
+
+
+/* Signup and Signin Page */
+
+
+.signin {
+  min-height: 100vh;
+  padding: 130px 0;
+}
+
+.signup {
+  min-height: 100vh;
+  padding: 70px 0;
+}
+
+.form-conainer {
+  padding: 40px 60px;
+  position: relative;
+  z-index: 10;
+  background-color: var(--interface-primary);
+}
+
+.form-conainer::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  /* background: linear-gradient(137deg, #80fcf0 0%, #efce85 52.6%, #ac5dfa 100%); */
+  background: rgb(53, 52, 53);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+
+
+.form-title {
+  font-size: 36px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 48px;
+  color: var(--white);
+}
+
+.form-desc {
+  color: var(--interface-secondary);
+  font-size: var(--font-size-lg);
+}
+
+.auth-links {
+  margin-top: 30px;
+}
+
+.auth-link {
+  padding: 16px 24px;
+  gap: 8px;
+  border-radius: 50px;
+  color: var(--interface-secondary);
+  border: 1px solid #3e3c47;
+}
+
+.auth-link:hover {
+  color: var(--white);
+  border-color: #a527ff;
+}
+
+.option-bar {
+  padding: 24px 0;
+  position: relative;
+  gap: 12px;
+}
+
+.auth-option {
+  color: var(--interface-secondary);
+  font-size: var(--font-size-xl);
+  background-color: var(--interface-primary);
+}
+
+.auth-line {
+  background-color: #3e3c47;
+  height: 1px;
+  width: 220px;
+  max-width: 100%;
+}
+
+.form-container2 .form-control {
+  border-radius: 50px;
+  padding: 16px 24px;
+  border: 1px solid #3e3c47;
+  background-color: var(--interface-primary);
+  color: var(--white);
+}
+
+
+
+.otp-field {
+  display: flex;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.otp-field input {
+  width: 50px;
+  font-size: 32px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 5px;
+  border: 2px solid #55525c;
+  background: #21232d;
+  font-weight: bold;
+  color: #fff;
+  outline: none;
+  transition: all 0.1s;
+}
+
+.otp-field input:focus {
+  border: 2px solid #a527ff;
+  box-shadow: 0 0 2px 2px #a527ff6a;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.space {
+  margin-right: 2rem !important;
+}
+
+
+
+#ff {
+  color: #fffffd;
+  text-decoration: none;
+  margin-left: auto;
+}
+#ff:hover{
+  color: #6e0ab6;
+}
+
+
+.form-container2 .form-control::placeholder {
+  color: var(--interface-secondary);
+}
+
+.form-container2 .form-control:focus {
+  border-color:  #a527ff;
+}
+
+.aai-form-eye {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.aai-form-check-label {
+  color: var(--interface-secondary);
+}
+
+.aai-form-support-text {
+  color: var(--interface-secondary);
+}
+
+.aai-form-support-link {
+  color: var(--white);
+}
+
+.aai-form-support-link:hover {
+  color: #6d10af;
+}

@@ -1,0 +1,113 @@
+{% extends 'pages/user.html' %}
+
+<!-- #region[Yellow] title -->
+
+{% block title %} Muscle Goups {% endblock %}
+
+<!-- #endregion -->
+
+<!-- #region[Cyan] Css -->
+
+{% block extra_css %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/workouts/msgp.css' %}">
+
+{% endblock extra_css %}
+
+<!-- #endregion -->
+
+<!-- #region[Red] Content -->
+
+{% block content %}
+<style>
+  /* .signin {
+  background: #000000;
+  --gap: 5em;
+  --line: 1px;
+  --color: rgba(255, 255, 255, 0.2);
+
+  background-image: linear-gradient(
+      -90deg,
+      transparent calc(var(--gap) - var(--line)),
+      var(--color) calc(var(--gap) - var(--line) + 1px),
+      var(--color) var(--gap)
+    ),
+    linear-gradient(
+      0deg,
+      transparent calc(var(--gap) - var(--line)),
+      var(--color) calc(var(--gap) - var(--line) + 1px),
+      var(--color) var(--gap)
+    );
+  background-size: var(--gap) var(--gap);
+}  */
+  /* .cards {
+      background: radial-gradient(45.2% 36.8% at 50% 41.099999999999994%,
+              rgba(79, 0, 250, 0.25) 0%,
+              rgba(0, 2, 18, 0) 100%);
+  } */
+
+  /* .cards {
+    background-image: url("https://assets-global.website-files.com/65301d49e87fbf23cc9a1e60/654cd27797dfda19022b3176_bg.png");
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-size: 100vw;
+    background-attachment: scroll;
+    position: relative;
+    overflow: hidden;
+  }
+ */
+
+
+  .card {
+
+    border: 1px solid rgb(53, 53, 53);
+    border-radius: 20px;
+    
+  }
+
+  .card {
+  display: inline-block;
+  position: relative;
+}
+
+.image-container {
+  overflow: hidden;
+}
+.card:hover{
+  background-color: rgb(65, 65, 65);
+}
+.card:hover .image-container img {
+  transform: scale(1.5);
+  margin-top: 30%;
+  transition: transform 1s ease-in-out; /* Adjust the transition duration and timing function */
+}
+
+.card-title {
+  margin-top: -10px;
+  /* Adjust the margin as needed */
+}
+
+</style>
+<div class="text">Muscle Groups</div>
+
+<div class="cards">
+
+  {% for muscleGroup in muscle_groups %}
+
+  <a href="{% url 'muscleGroups_workouts' muscleGroup.name %}" class="card">
+    <div class="image-container">
+      <img src="{{muscleGroup.image.url}}" alt="upper_chest" />
+    </div>
+    <h2 class="card-title">{{ muscleGroup.name }}</h2>
+  </a>
+
+
+
+  {% endfor %}
+
+</div>
+
+{% endblock content %}
+
+<!-- #endregion -->
