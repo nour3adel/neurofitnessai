@@ -2,7 +2,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "neurofitness/wsgi.py"
+      "dest": "Neurofitness/wsgi.py"
     }
   ]
 }
