@@ -3,7 +3,10 @@
 import os
 import sys
 
+#region adsdqwdw
 
+print("sasasas");
+#endregion
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Neurofitness.settings')
